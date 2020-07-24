@@ -1,6 +1,5 @@
 import os
 import re
-from nltk.tokenize import sent_tokenize
 
 #gets current path
 mypath = os.getcwd()
