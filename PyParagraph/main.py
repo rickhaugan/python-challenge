@@ -18,50 +18,41 @@ filesub = open(mypathfile1,"r")
 filedata = (filesub.readlines())
 filesub.close()
 
-
-entireFilePerLine = []
-for line in filedata:
-    entireFilePerLine.append(line)
-
-
-#split file into words
-filedatatosplit = []
-filedatatosplit = str(filedata).split()
+filedataremovelinebeaks = []
+#read file data and remove line breaks
+for x in filedata:
+    x = str.replace(x,"\n","")
+    if len(x) > 1:
+        filedataremovelinebeaks.append(x)
 
 
-totallettercount = 0
-#get total letters per all words in file
-for words in filedatatosplit:
-    totallettercount += int(len(re.sub("[^A-Za-z0-9_]","",words)))
+split_into_sentences = []
+#split list into sentences
+for line in filedataremovelinebeaks:
+    split_into_sentences += (re.split("(?<=[.!?]) +",line))
 
-
-#average of total letters per word per file
-avglettersperwordperfile = round(totallettercount / int(len(filedatatosplit)),2)
-
-
-# split file by sentence
-mytextlistbysentence = []
-for line in entireFilePerLine:
-    #imported package https://www.nltk.org/
-    mytextlistbysentence += (sent_tokenize(str(line))) 
+sentence_count = len(split_into_sentences)
 
 
 
-# gets words in sentence
-# gets sentence length
-# sums sentences lengths
-wordsinsent = []
-sentencelength = []
-sumofsentenceslength = 0
-for sentence in mytextlistbysentence:
-    sentencelength.append(str(len(sentence)))
-    wordsinsent +=(str(sentence).split())
-    sumofsentenceslength += len(sentence)
+split_into_words = []
+words_per_sentence = []
+# split sentences into words
+for sentence in split_into_sentences:
+    split_into_words += (str(sentence).split())
+    words_per_sentence.append(len(str(sentence).split()))
 
-avglengthpersent = round(sumofsentenceslength/len(sentencelength),2)
-sentence_count = len(mytextlistbysentence)
+total_letter_count = 0
+#get word length in characters
+for words in split_into_words:
+    total_letter_count += len(str(words))
 
-print(f"Approximate Word Count: {len(wordsinsent)}")
+word_count = len(split_into_words)
+avg_letters_per_word = round(total_letter_count / word_count,2)
+avg_sentence_length_per_words = round(sum(words_per_sentence) / len(words_per_sentence),2)
+
+
+print(f"Approximate Word Count: {word_count}")
 print(f"Approximate Sentence Count: {sentence_count}")
-print(f"Average Letter Count: {avglettersperwordperfile}")
-print(f"Average Sentence Length: {avglengthpersent}")
+print(f"Average Letter Count (Per word): {avg_letters_per_word}")
+print(f"Average Sentence Length(In words): {avg_sentence_length_per_words}")
