@@ -59,21 +59,21 @@ format_ssn_list.insert(0,col4_header)
 
 
 
-mystatefilepath = os.getcwd()
+state_file_path = os.getcwd()
 #adds current path to file source path
 #This file has state names and abrevations
-mystatefilepath = mystatefilepath + '\\states.csv'
+state_file_path = state_file_path + '\\states.csv'
 
 #declare lists for columns
-statesfile = []
+states_file = []
 statesabvfile = []
 
 
 #opens file and appends to lists
-with open(mystatefilepath) as data2:
+with open(state_file_path) as data2:
     state_file_list = csv.reader(data2)
     for x in state_file_list:
-        statesfile.append(x[0])
+        states_file.append(x[0])
         statesabvfile.append(x[1])
 
 
@@ -83,7 +83,7 @@ format_state_list = []
 while (i < (len(state))):
     #Finds state abrevation from full state name
     tempstate = state[i]
-    mystateindex = statesfile.index(tempstate)
+    mystateindex = states_file.index(tempstate)
     myabvstate = statesabvfile[mystateindex]
     format_state_list.append(myabvstate)
 

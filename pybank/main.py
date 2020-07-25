@@ -21,9 +21,6 @@ with open(mypath) as data2:
 col1_header = mydates[0]
 col2_header = mytrans[0]
 
-# print (col1_header)
-# print (col2_header)
-
 #calc total months
 total_months = len(mydates) - 1
 
@@ -65,25 +62,11 @@ while i < (len(mytrans)):
             greatest_decrease_date = mydates[i+1]
 
             
-
-
     i += 1
 
 
-
-
-
-j = 0
-myavgtotal = 0
-
-#calcs total of average change list
-while j < (len(avg_change)):
-    myavgtotal = myavgtotal + int(avg_change[j] ) 
-    j += 1
-
-myavgtotalavg = myavgtotal / len(avg_change)
-myaverage = mytotal / (len(mytrans) -1)
-
+#calc Average change
+myaverage = sum(avg_change)/len(avg_change)
 
 #get filename from user
 valid_input = True
