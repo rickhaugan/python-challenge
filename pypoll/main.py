@@ -25,10 +25,6 @@ col1_header = myvoterid[0]
 col2_header = mycounty[0]
 col3_header = mycandidate[0]
 
-# print (col1_header)
-# print (col2_header)
-# print (col3_header)
-
 #calc total voters
 total_voters = len(myvoterid) - 1
 
@@ -38,7 +34,6 @@ khan_total = 0
 li_total = 0
 correy_total = 0
 tooley_total = 0
-
 
 
 
